@@ -35,20 +35,41 @@ public class User {
         if(input.isEmpty()) throw new EmptyInputException();
     }
     private void validateTelephone(String telephone){
-        if(findContact(telephone) != null) throw new ContactAlreadyExistException();
+        if(findContactByPhonNumber(telephone) != null) throw new ContactAlreadyExistException();
     }
 
 
     public  void removeContact(String telephone){
-        Contact contact = findContact(telephone);
+        Contact contact = findContactByPhonNumber(telephone);
         if (contacts != null)contacts.remove(contact);
     }
 
-    public Contact findContact(String telephone){
+    public Contact findContactByPhonNumber(String telephone){
         for(Contact contact : contacts){
             if (contact.getTelephone().equals(telephone)) return contact;
         }
         return  null;
 
     }
+
+    public Contact findContactByName(String name){
+        for(Contact contact : contacts){
+            if (contact.getTelephone().equals(name)) return contact;
+        }
+        return  null;
+
+    }
+
+    public Contact editContact(String phonenumber, String newPhoneNumber){
+        Contact contact = findContactByPhonNumber(phonenumber);
+        if (contacts != null){
+            contacts.remove(contact);
+            contact.setTelephone(newPhoneNumber);
+            contacts.add(contact);
+            return contact;
+        }
+        return null;
+    }
+
+
 }
