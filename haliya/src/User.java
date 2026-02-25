@@ -16,29 +16,28 @@ public class User {
         return "Contact "+name+" added.";
     }
 
-    public String deleteContact(String phoneNumber){
+    public List<Contact> deleteContact(String phoneNumber){
         contactsList.removeIf(contact -> Objects.equals(contact.getPhoneNumber(), phoneNumber));
-        return "Contact has been deleted";
+        return contactsList;
     }
 
     public Contact findByPhoneNumber(String phoneNumber) {
         for (Contact contact : contactsList) {
-            if (Objects.equals(phoneNumber, contact.getPhoneNumber())) return contact;
-
+            if (phoneNumber.equals(contact.getPhoneNumber())) return contact;
         }
 
-        return null;
+        throw new IllegalArgumentException();
     }
 
     public Contact findByName(String name){
         for (Contact contact : contactsList) {
-            if (Objects.equals(name, contact.getName())) return contact;
-            else throw new IllegalArgumentException("WRONG");
+            if (name.equals(contact.getName())) return contact;
+
         }
-        return null;
+       throw new IllegalArgumentException();
     }
 
-    public String editContact(String phoneNumber,
+    public Contact editContact(String phoneNumber,
                               String newName, String newEmail,
                               String newPhoneNumber, String newAddress){
        Contact contact = findByPhoneNumber(phoneNumber);
@@ -46,6 +45,6 @@ public class User {
        contact.setEmail(newEmail);
        contact.setName(newName);
        contact.setAddress(newAddress);
-       return "Contact Edited Successfully";
+       return contact;
     }
 }
