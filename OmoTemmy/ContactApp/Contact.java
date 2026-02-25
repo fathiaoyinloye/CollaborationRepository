@@ -1,10 +1,12 @@
+import java.util.Arrays;
+
 public class Contact {
     private String name;
     private  String address;
     private String email;
     private String telephone;
 
-    public Contact(String telephone, String name) {
+    public Contact(String telephone,String name) {
         this.telephone = telephone;
         this.name = name;
     }
@@ -15,6 +17,12 @@ public class Contact {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String[] getNames(){
+        String[] names = name.split(" ");
+        System.out.println(Arrays.toString(names));
+        return names;
     }
 
     public String getAddress() {
