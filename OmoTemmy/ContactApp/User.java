@@ -44,11 +44,21 @@ public class User {
         if (contacts != null)contacts.remove(contact);
     }
 
-    public Contact findContact(String telephone){
+    public  Contact findContact(String telephone){
         for(Contact contact : contacts){
             if (contact.getTelephone().equals(telephone)) return contact;
         }
         return  null;
+
+    }
+
+
+    public  ArrayList <Contact> findContacts(String name){
+        ArrayList <Contact> names = new ArrayList<>();
+        for(Contact contact : contacts){
+            if (contact.getName().equals(name)) names.add(contact) ;
+        }
+        return  names;
 
     }
 }
